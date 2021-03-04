@@ -1,4 +1,3 @@
-import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Link } from "gatsby-plugin-modal-routing"
 import PropTypes from "prop-types"
@@ -6,31 +5,22 @@ import React from "react"
 import { Feature } from "."
 
 export const Card = (props) => {
-  const {
-    country,
-    image: {
-      localFiles: [cover],
-    },
-    name,
-    navigation,
-    slug,
-    summary,
-  } = props
+  const { Name, FreePeriod, slug } = props
 
   return (
     <div className="bg-white dark:bg-blue-900 h-full shadow-sm rounded-md overflow-hidden hover:bg-blue-100 dark:hover:bg-blue-800">
-      <Link to={`/${slug}`} state={{ navigation }} asModal>
+      <Link to={`/${slug}`} state={{ navigation: {} }} asModal>
         <div className="bg-blue-300">
-          <Img fluid={cover.childImageSharp.fluid} alt={name} />
+          <Img fluid={""} alt={Name} />
         </div>
         <div className="p-5 pb-1">
           <h1 className="text-2xl text-blue-500 dark:text-blue-300 font-bold leading-snug">
-            {name}
+            {Name}
           </h1>
           <p className="text-base text-blue-900 dark:text-blue-400 mb-5 font-medium">
-            {summary}
+            Summary here
           </p>
-          <Feature label="Country" value={country} />
+          <Feature label="Free Period" value={FreePeriod} />
         </div>
       </Link>
     </div>
@@ -54,15 +44,3 @@ Card.propTypes = {
 Card.defaultProps = {
   navigation: {},
 }
-
-export const query = graphql`
-  fragment CardImageFragment on AirtableField {
-    localFiles {
-      childImageSharp {
-        fluid(maxWidth: 640, maxHeight: 420, cropFocus: NORTH) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-  }
-`

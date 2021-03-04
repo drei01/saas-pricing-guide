@@ -3,20 +3,24 @@ import { graphql } from "gatsby"
 import { Cards, Hero, SiteMetadata } from "../components"
 import { Layout } from "../layouts/Layout"
 
+const TITLE = "SaaS Pricing Guide"
+const DESCRIPTION =
+  "Compare the pricing strategies for hundreds of SaaS companies"
+
 export default ({ data }) => {
   return (
     <Layout>
       <SiteMetadata
-        title="Travel destinations"
-        description="Check the most popular travel destinations in Europe."
+        title={TITLE}
+        description={DESCRIPTION}
         image={data.hero.url}
       />
 
       <Hero
         image={data.hero}
-        tag="#travel"
-        title="Travel destinations"
-        description="Check the most popular travel locations in Europe."
+        tag="#saas"
+        title={TITLE}
+        description={DESCRIPTION}
       />
 
       <Cards nodes={data.items.nodes} />
@@ -26,19 +30,15 @@ export default ({ data }) => {
 
 export const query = graphql`
   query IndexQuery($tableName: String!) {
-    hero: file(relativePath: { eq: "hero-travel.jpg" }) {
+    hero: file(relativePath: { eq: "hero.jpg" }) {
       ...HeroImageFragment
     }
     items: allAirtable(filter: { table: { eq: $tableName } }) {
       nodes {
         data {
-          country
-          image {
-            ...CardImageFragment
-          }
-          name
+          Name
+          FreePeriod
           slug
-          summary
         }
       }
     }
