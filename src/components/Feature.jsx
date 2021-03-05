@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-export const Feature = ({ label, value }) => {
+export const Feature = ({ label, value, valueLabel }) => {
   if (typeof value === "string") {
     if (value.startsWith("http") || value.startsWith("mailto")) {
       value = (
@@ -12,7 +12,7 @@ export const Feature = ({ label, value }) => {
             rel="noopener noreferrer"
             className="text-blue-500 dark:text-blue-400 hover:text-blue-700 transition-colors duration-200"
           >
-            {value}
+            {valueLabel || value}
           </a>
         </div>
       )

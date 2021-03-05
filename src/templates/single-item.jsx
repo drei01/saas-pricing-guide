@@ -1,5 +1,4 @@
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import React from "react"
 import { Feature, SiteMetadata } from "../components"
 import { useModal } from "../context"
@@ -7,7 +6,8 @@ import { Layout } from "../layouts/Layout"
 
 export default (props) => {
   const { data, location } = props
-  const { Name, LogoUrl, Description, FreePeriod } = data.item.data
+  const { Name, LogoUrl, Description, FreePeriod, Domain } = data.item.data
+  const websiteLink = `https://${Domain}?utm_source=pricewell.io`
   const navigation = location.state ? location.state.navigation : null
   const { modal } = useModal()
 
@@ -28,9 +28,11 @@ export default (props) => {
             </div>
             <div className="w-full lg:w-2/5 lg:pl-4">
               <Feature label="Free Period" value={FreePeriod} />
-              <p className="mt-4 whitespace-pre-line text-sm lg:text-base leading-normal text-blue-900 dark:text-blue-600">
-                Description Here
-              </p>
+              <Feature
+                label="Website"
+                value={websiteLink}
+                valueLabel={Domain}
+              />
             </div>
           </div>
         </div>
@@ -45,6 +47,7 @@ export const query = graphql`
       data {
         Name
         Description
+        Domain
         LogoUrl
         FreePeriod
         slug
