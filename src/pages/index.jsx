@@ -37,6 +37,8 @@ export const query = graphql`
       nodes {
         data {
           Name
+          Description
+          LogoUrl
           FreePeriod
           slug
         }
