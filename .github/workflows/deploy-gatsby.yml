@@ -14,3 +14,7 @@ jobs:
         with:
           access-token: x-access-token:${{ secrets.GITHUB_TOKEN }}
           deploy-branch: gh-pages
+        env:
+          AIRTABLE_API_KEY: ${{secrets.AIRTABLE_API_KEY}}
+          AIRTABLE_BASE_ID: ${{secrets.AIRTABLE_BASE_ID}}
+          AIRTABLE_TABLE_NAME: ${{secrets.AIRTABLE_TABLE_NAME}}
